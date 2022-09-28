@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Shakaib_UR_Rehman.Models.dataClass>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index2</h1>
+<p>
+    @using (Html.BeginForm("index","informationclass",FormMethod.Get))
+    {
+        <b>search By:</b>@Html.RadioButton("searchBy", "empl_name",true)<text>empl_Name</text>
+        @Html.RadioButton("searchBy", "city")<text>City</text> <br/>
+        @Html.TextBox("search")<input type="submit" value="search" style="hover" />
+           
+    }
+
+</p>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.empl_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.city)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.empl_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
